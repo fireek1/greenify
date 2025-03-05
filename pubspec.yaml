@@ -20,6 +20,8 @@ flutter:
     - family: 'SF-Pro'
       fonts:
         - asset: 'assets/fonts/SF-Pro.ttf'
+    - family: 'Playfair'
+      fonts: 
+        - asset: 'assets/fonts/PlayfairDisplay.ttf'
   assets:
-    - 'assets/images/background.jpg'
-    - 'assets/images/fullLogo.svg'
+    - 'assets/images/'
