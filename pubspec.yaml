@@ -7,6 +7,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  soft_edge_blur: ^0.1.3
+  blur: ^4.0.0
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.0.17
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:greenify/start.dart';
-import 'package:greenify/myPlants.dart';
+
+import 'package:greenify/auth/start.dart';
+import 'package:greenify/main_menu/my_plants/my_plants.dart';
 
 void main() => runApp(MyApp());
 
