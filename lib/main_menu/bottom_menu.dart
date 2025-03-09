@@ -24,7 +24,6 @@ class BottomMenu extends StatelessWidget {
                   color: Color(0x05000000),
                 ),
                 padding: EdgeInsets.all(2),
-                // padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
                 child: Row(
                   children: [
                     ButtonMenu(buttonType: 'plants', isActive: isActive == 0),

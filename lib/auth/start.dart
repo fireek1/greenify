@@ -40,7 +40,8 @@ class HomePage extends StatelessWidget {
                             flex: 2,
                             child: SingButton(
                               text: 'Войти',
-                              onPressed: () => print('Войти'),
+                              onPressed:
+                                  () => Navigator.pushNamed(context, '/login'),
                             ),
                           ),
                           SizedBox(width: 8),
@@ -49,7 +50,9 @@ class HomePage extends StatelessWidget {
                             flex: 5,
                             child: SingButton(
                               text: 'Зарегистрироваться',
-                              onPressed: () => print('Регистрация'),
+                              onPressed:
+                                  () =>
+                                      Navigator.pushNamed(context, '/register'),
                             ),
                           ),
                         ],
