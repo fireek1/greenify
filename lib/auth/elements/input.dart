@@ -3,7 +3,16 @@ import 'package:flutter/material.dart';
 class InputAuth extends StatelessWidget {
   final String topText;
   final String hintText;
-  const InputAuth({super.key, required this.topText, required this.hintText});
+  final ValueChanged<String> onChanged;
+  final bool obscureText;
+
+  const InputAuth({
+    super.key,
+    required this.topText,
+    required this.hintText,
+    required this.onChanged,
+    required this.obscureText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +27,10 @@ class InputAuth extends StatelessWidget {
             fontSize: 16,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         TextField(
+          onChanged: onChanged,
+          obscureText: obscureText,
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(

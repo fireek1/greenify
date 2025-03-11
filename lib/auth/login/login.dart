@@ -1,11 +1,50 @@
 import 'package:flutter/material.dart';
-
 import 'package:greenify/auth/elements/back_button.dart';
 import 'package:greenify/auth/elements/input.dart';
-import 'package:greenify/auth/elements/login_button.dart';
+import 'package:greenify/api_service.dart'; // Предположим, что у вас есть этот файл
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  String username = '';
+  String password = '';
+  String _errorMessage = '';
+  bool _isLoading = false;
+
+  Future<void> _login() async {
+    if (username.isEmpty || password.isEmpty) {
+      setState(() {
+        _errorMessage = 'Пожалуйста, заполните все поля';
+      });
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+
+    try {
+      // Вызов API для входа
+      final user = await ApiService.login(username, password);
+
+      // Если вход успешен, переходим на другой экран
+      Navigator.pushNamed(context, '/home'); // Замените '/home' на ваш экран
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Ошибка входа: $e';
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +68,59 @@ class Login extends StatelessWidget {
                 textAlign: TextAlign.start,
               ),
               SizedBox(height: 36),
-              InputAuth(topText: 'Email', hintText: 'Введите почту'),
+              InputAuth(
+                topText: 'Email',
+                hintText: 'Введите почту',
+                onChanged: (text) {
+                  setState(() {
+                    username = text;
+                  });
+                },
+                obscureText: false,
+              ),
               SizedBox(height: 16),
-              InputAuth(topText: 'Пароль', hintText: 'Введите пароль'),
+              InputAuth(
+                topText: 'Пароль',
+                hintText: 'Введите пароль',
+                onChanged: (text) {
+                  setState(() {
+                    password = text;
+                  });
+                },
+                obscureText: true,
+              ),
+              if (_errorMessage.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    _errorMessage,
+                    style: TextStyle(color: Colors.red, fontSize: 14),
+                  ),
+                ),
               SizedBox(height: 24),
-              LoginButton(buttonText: 'Войти'),
+              ElevatedButton(
+                onPressed:
+                    _isLoading ? null : _login, // Блокируем кнопку при загрузке
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(155, 222, 31, 0.7),
+                  elevation: 0,
+                ),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 58,
+                  child: Center(
+                    child: Text(
+                      'Войти',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'SF-Pro',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(height: 17),
               ElevatedButton(
                 onPressed: () => print('Нажата'),

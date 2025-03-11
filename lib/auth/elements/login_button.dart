@@ -7,7 +7,7 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => print('Нажата'),
+      onPressed: () {},
       style: ElevatedButton.styleFrom(
         backgroundColor: Color.fromRGBO(155, 222, 31, 0.7),
         elevation: 0,
