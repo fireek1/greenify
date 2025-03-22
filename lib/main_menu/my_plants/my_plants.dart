@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greenify/main_menu/bottom_menu.dart';
+import 'package:greenify/main_menu/my_plants/my_plant_scroll.dart';
 
 const plus = 'assets/images/plus.svg';
 
@@ -14,9 +15,9 @@ class MyPlants extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(12),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 16),
+                  SizedBox(height: 16, width: double.infinity),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
@@ -50,10 +51,10 @@ class MyPlants extends StatelessWidget {
                       color: Colors.black,
                     ),
                   ),
+                  MyPlantScroll(),
                 ],
               ),
             ),
-
             Positioned(
               left: 0,
               right: 0,

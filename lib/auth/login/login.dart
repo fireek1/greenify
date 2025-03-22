@@ -30,11 +30,9 @@ class _LoginState extends State<Login> {
     });
 
     try {
-      // Вызов API для входа
       final user = await ApiService.login(username, password);
 
-      // Если вход успешен, переходим на другой экран
-      Navigator.pushNamed(context, '/home'); // Замените '/home' на ваш экран
+      Navigator.pushNamed(context, '/myPlants');
     } catch (e) {
       setState(() {
         _errorMessage = 'Ошибка входа: $e';
